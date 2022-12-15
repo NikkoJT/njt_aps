@@ -24,10 +24,14 @@ if _allowReload then {
 		"(_this getUnitTrait 'engineer') && {(_target getVariable ['njt_var_apsCooldown',false]) && (vehicle _this == _this) && (alive _target) && (_this distance _target < 5)}", // Condition to show
 		"(_this getUnitTrait 'engineer') && {(_target getVariable ['njt_var_apsCooldown',false]) && (vehicle _this == _this) && (alive _target) && (_this distance _target < 5)}", // Condition to progress
 		{}, // Code on start
-		{}, // Code on tick
+		{
+			params ["_target", "_caller", "_actionId", "_arguments", "_progress", "_maxProgress"];
+			playSound3D ["\a3\Ui_f\data\Sound\CfgCutscenes\repair.wss",_caller];
+		}, // Code on tick
 		{ 
 			params ["_target", "_caller", "_actionId", "_arguments"];
 			_target setVariable ["njt_var_apsCooldown",false,true];
+			playSound3D ["A3\Sounds_F\arsenal\weapons\LongRangeRifles\DMR_01_Rahim\DMR_01_reload.wss",_caller];
 			["APS RELOAD",2] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
 			[["beep",2]] remoteExec ["playSound",crew _target];
 		}, // Code on completed
