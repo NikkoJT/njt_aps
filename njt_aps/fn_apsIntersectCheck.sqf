@@ -20,7 +20,7 @@ if (count _intersects > 0) then {
 	if (_intersectObj == _vehicle) then {
 		_return = true;
 	} else {
-		_projectile setVariable ["njt_var_apsChecked",[_vehicle,(_checkCount + 1)];
+		_projectile setVariable ["njt_var_apsChecked",[_vehicle,(_checkCount + 1)]];
 		uisleep 0.1
 		_return = [_projectile,_vehicle] call njt_fnc_apsIntersectCheck;
 	};
