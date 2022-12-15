@@ -19,10 +19,12 @@ if (isNull _projectile) exitWith {};
 
 // Don't touch me!
 deleteVehicle _projectile;
+
 // Create effects and warnings
 private _flare = createVehicle ["CMFlareAmmo",_projectilePos,[],0,"CAN_COLLIDE"];
-private _flareDir = _flare vectorFromTo _vehicle;
-_flare setVelocity _flareDir;
+private _flareDir = (getPosASL _flare) vectorFromTo (getPosASL _vehicle);
+_flare setVelocity (_flareDir vectorMultiply 40);
+
 // Requires F3 FCS module!
 ["APS DEFEAT",3] remoteExec ["f_fnc_fcsLocalWarning",_shooter];
 [["vtolAlarm",2]] remoteExec ["playSound",crew _vehicle];
@@ -30,12 +32,14 @@ _flare setVelocity _flareDir;
 [_projectilePos,_vehicle] remoteExec ["njt_fnc_apsLocalEffects"];
 playSound3D ["A3\Sounds_F\arsenal\explosives\rockets\Rocket_closeExp_02.wss",_vehicle,false,getPosASL _vehicle,1,1,150];
 playSound3D ["A3\Sounds_F\arsenal\explosives\rockets\RocketHeavy_tailMeadows_01.wss",_vehicle,false,getPosASL _vehicle,1,1,150];
+
 // APS aren't completely safe...
-private _fxgrenade = createVehicle ["B_40mm_GPR",_projectilePos,[],0,"CAN_COLLIDE"];
+private _fxgrenade = createVehicle ["BombCluster_01_UXO1_Ammo_F",_projectilePos,[],0,"CAN_COLLIDE"];
 triggerAmmo _fxgrenade;
-_fxgrenade setDamage 1;
+
 // grace period during which any additional shots will still be intercepted
 uisleep 2;
+
 // Now we're on cooldown (but don't do this if we're a secondary activation, let the first activation take care of it)
 _APScooldown = _vehicle getVariable ["njt_var_apsCooldown",false];
 if !_APScooldown then {

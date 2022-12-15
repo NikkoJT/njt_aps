@@ -18,7 +18,7 @@ while {alive _vehicle && (_vehicle getVariable ["njt_var_apsEnabled",false])} do
 	if (count _projectiles > 0) then {
 		{
 			// If the projectile hasn't already been handled, activate interceptor
-			if !(_x getVariable ["njt_var_apsChecked",false]) then {
+			if !(_x getVariable ["njt_var_apsChecked",objNull] == _vehicle) then {
 				[_x,_vehicle] spawn njt_fnc_apsIntercept;
 			};
 		} forEach _projectiles;
