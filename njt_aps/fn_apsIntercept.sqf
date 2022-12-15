@@ -11,10 +11,7 @@ _handledProjectiles pushBack _projectile;
 _vehicle setVariable ["njt_var_apsTracked",_handledProjectiles];
 
 // Check if the projectile is likely to hit the vehicle
-if !([_projectile,_vehicle] call njt_fnc_apsIntersectCheck) exitWith {
-systemChat "APS NOT A THREAT";
-};
-systemChat "APS IS THREAT";
+if !([_projectile,_vehicle] call njt_fnc_apsIntersectCheck) exitWith {};
 
 // Find out who did it so we can blame them
 private _shooterVehicle = (getShotParents _projectile) select 0;
@@ -54,13 +51,12 @@ uisleep 2;
 _APScooldown = _vehicle getVariable ["njt_var_apsCooldown",false];
 if !_APScooldown then {
 	_vehicle setVariable ["njt_var_apsCooldown",true,true];
-	systemChat "APS ENTERING COOLDOWN";
 	
 	if (njt_var_APScooldownTimer > 0) then {
-		systemChat "APS OFF COOLDOWN";
+		
 		uisleep njt_var_APScooldownTimer;
 		_vehicle setVariable ["njt_var_apsCooldown",false,true];
 		[["beep",2]] remoteExec ["playSound",crew _vehicle];
-		["APS ONLINE",3] remoteExec ["f_fnc_fcsLocalWarning",crew _vehicle];
+		["APS READY",3] remoteExec ["f_fnc_fcsLocalWarning",crew _vehicle];
 	};
 };

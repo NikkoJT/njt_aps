@@ -17,10 +17,10 @@ params ["_vehicle"];
 // If the APS is manually disabled or the vehicle is destroyed, exit
 while {alive _vehicle && (_vehicle getVariable ["njt_var_apsEnabled",false])} do {
 	// If this isn't currently our vehicle, it's not our problem
-	if (!local _vehicle) then { systemChat "APS NOT LOCAL"; continue };
+	if (!local _vehicle) then { sleep 1; continue };
 	// If APS is on cooldown, skip this
 	private _APScooldown = _vehicle getVariable ["njt_var_apsCooldown",false];
-	if _APScooldown then { continue };
+	if _APScooldown then { sleep 1; continue };
 	
 	// Detect nearby projectiles
 	private _projectiles = [_vehicle] call njt_fnc_apsNearProjectiles;
@@ -35,4 +35,3 @@ while {alive _vehicle && (_vehicle getVariable ["njt_var_apsEnabled",false])} do
 	};
 	uisleep 0.001;
 };
-systemChat "APS LOOP EXITED";
