@@ -29,7 +29,7 @@ if _allowReload then {
 			params ["_target", "_caller", "_actionId", "_arguments"];
 			_target setVariable ["njt_var_apsCooldown",false,true];
 			["APS RELOAD",2] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
-			[["beep",2]] remoteExec ["playSound",crew _vehicle];
+			[["beep",2]] remoteExec ["playSound",crew _target];
 		}, // Code on completed
 		{}, // Code on interrupt
 		[], // Arguments to pass
@@ -48,9 +48,9 @@ private _apsArmAction = _vehicle addAction [
 	"Arm APS",	
 	{
 		params ["_target", "_caller", "_actionId", "_arguments"];
-		_vehicle setVariable ["njt_var_apsEnabled",true,true];
+		_target setVariable ["njt_var_apsEnabled",true,true];
 		["APS ARM",2] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
-		[["beep",2]] remoteExec ["playSound",crew _vehicle];
+		[["beep",2]] remoteExec ["playSound",crew _target];
 		_target spawn {
 			sleep 1;
 			[_this] remoteExec ["njt_fnc_apsLoop",0,true];
@@ -73,9 +73,9 @@ private _apsDisarmAction = _vehicle addAction [
 	"Disarm APS",	
 	{
 		params ["_target", "_caller", "_actionId", "_arguments"];
-		_vehicle setVariable ["njt_var_apsEnabled",false,true];
+		_target setVariable ["njt_var_apsEnabled",false,true];
 		["APS DISARM",2] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
-		[["beep",2]] remoteExec ["playSound",crew _vehicle];
+		[["beep",2]] remoteExec ["playSound",crew _target];
 	},
 	nil,	
 	-1,	
