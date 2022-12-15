@@ -2,9 +2,6 @@
 // This function detects when there are nearby important projectiles, and activates the interceptor if there are.
 params ["_vehicle"];
 
-// This function has been run so record that.
-_vehicle setVariable ["njt_var_apsEnabled",true];
-
 // If the APS is manually disabled or the vehicle is destroyed, exit
 while {alive _vehicle && (_vehicle getVariable ["njt_var_apsEnabled",false])} do {
 	// If this isn't currently our vehicle, it's not our problem

@@ -1,8 +1,6 @@
-// Active Protection System Module
-// Specify cooldown (0 for single-use system)
-njt_var_apsCooldownTimer = 90;
-// Initialise APS
+// APS module
+// Parameters: vehicle, cooldown (0 for single-use), allow manual reload
+
 {
-	[_x] spawn njt_fnc_apsLoop;
-// Insert vehicles here
+	[_x,90,false] spawn njt_fnc_apsSetup;
 } forEach [];
