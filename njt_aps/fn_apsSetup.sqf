@@ -44,7 +44,7 @@ if _allowReload then {
 };
 
 // Add action to toggle APS
-private _apsArmAction = [
+private _apsArmAction = _vehicle addAction [
 	"Arm APS",	
 	{
 		params ["_target", "_caller", "_actionId", "_arguments"];
@@ -69,7 +69,7 @@ private _apsArmAction = [
 ];
 _vehicle setVariable ["njt_apsArmAction",_apsArmAction];
 
-private _apsDisarmAction = [
+private _apsDisarmAction = _vehicle addAction [
 	"Disarm APS",	
 	{
 		params ["_target", "_caller", "_actionId", "_arguments"];
