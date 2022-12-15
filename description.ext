@@ -1,0 +1,15 @@
+class CfgFunctions
+{
+	class njt
+	{
+		class aps
+		{
+			file = "njt_aps";
+			class apsIntercept{};
+			class apsLoop{};
+			class apsNearProjectiles{};
+			class apsIntersectCheck{};
+			class apsLocalEffects{};
+		};
+	};
+};
