@@ -3,6 +3,8 @@
 
 params ["_projectile","_vehicle"];
 
+// Tag the projectile as handled by this vehicle so only one interceptor is created
+_projectile setVariable ["njt_var_apsChecked",[_vehicle,0]];
 // Check if the projectile is likely to hit the vehicle
 if !([_projectile,_vehicle] call njt_fnc_apsIntersectCheck) exitWith {};
 
