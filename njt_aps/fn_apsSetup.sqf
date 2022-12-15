@@ -8,7 +8,7 @@ private _isAllowed = _vehicle getVariable ["njt_var_apsEnabled",true];
 if (_isAllowed) then {
 
 	// This function has been run so record that.
-	if (local _vehicle) then {_vehicle setVariable ["njt_var_apsEnabled",true,true];
+	if (local _vehicle) then {_vehicle setVariable ["njt_var_apsEnabled",true,true];};
 	sleep 1;
 	// Initialise APS
 	[_vehicle] spawn njt_fnc_apsLoop;
