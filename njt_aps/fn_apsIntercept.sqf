@@ -35,15 +35,15 @@ private _flareDir = (getPosASL _flare) vectorFromTo (getPosASL _vehicle);
 _flare setVelocity (_flareDir vectorMultiply 40);
 
 // Requires F3 FCS module!
-["APS DEFEAT",3] remoteExec ["f_fnc_fcsLocalWarning",_shooter];
+["APS DEFEAT",3,2] remoteExec ["f_fnc_fcsLocalWarning",_shooter];
 [["vtolAlarm",2]] remoteExec ["playSound",crew _vehicle];
-["APS ACTIVATION",3] remoteExec ["f_fnc_fcsLocalWarning",crew _vehicle];
+["APS ACTIVATION",3,1] remoteExec ["f_fnc_fcsLocalWarning",crew _vehicle];
 [_projectilePos,_vehicle] remoteExec ["njt_fnc_apsLocalEffects"];
 playSound3D ["A3\Sounds_F\arsenal\explosives\rockets\Rocket_closeExp_02.wss",_vehicle,false,getPosASL _vehicle,1,1,150];
 playSound3D ["A3\Sounds_F\arsenal\explosives\rockets\RocketHeavy_tailMeadows_01.wss",_vehicle,false,getPosASL _vehicle,1,1,150];
 
 // APS aren't completely safe...
-private _fxgrenade = createVehicle ["BombCluster_01_UXO1_Ammo_F",_projectilePos,[],0,"CAN_COLLIDE"];
+private _fxgrenade = createVehicle ["BombCluster_01_UXO3_Ammo_F",_projectilePos,[],0,"CAN_COLLIDE"];
 triggerAmmo _fxgrenade;
 
 // grace period during which any additional shots will still be intercepted
@@ -59,6 +59,6 @@ if !_APScooldown then {
 		uisleep njt_var_APScooldownTimer;
 		_vehicle setVariable ["njt_var_apsCooldown",false,true];
 		[["beep",2]] remoteExec ["playSound",crew _vehicle];
-		["APS READY",3] remoteExec ["f_fnc_fcsLocalWarning",crew _vehicle];
+		["APS READY",3,1] remoteExec ["f_fnc_fcsLocalWarning",crew _vehicle];
 	};
 };
