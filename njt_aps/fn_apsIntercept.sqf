@@ -55,10 +55,16 @@ if !_APScooldown then {
 	_vehicle setVariable ["njt_var_apsCooldown",true,true];
 	
 	if (njt_var_APScooldownTimer > 0) then {
+		private _cooldownStart = time;
+		waitUntil {
+			sleep 0.5;
+			((time >= (_cooldownStart + njt_var_APScooldownTimer)) or !(_vehicle getVariable ["njt_var_apsCooldown",false]));
+		};
 		
-		uisleep njt_var_APScooldownTimer;
-		_vehicle setVariable ["njt_var_apsCooldown",false,true];
-		[["beep",2]] remoteExec ["playSound",crew _vehicle];
-		["APS READY",3,1] remoteExec ["f_fnc_fcsLocalWarning",crew _vehicle];
+		if (_vehicle getVariable ["njt_var_apsCooldown",false]) then {
+			_vehicle setVariable ["njt_var_apsCooldown",false,true];
+			[["beep",2]] remoteExec ["playSound",crew _vehicle];
+			["APS READY",3,1] remoteExec ["f_fnc_fcsLocalWarning",crew _vehicle];
+		};
 	};
 };
