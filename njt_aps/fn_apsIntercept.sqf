@@ -4,7 +4,6 @@
 params ["_projectile","_vehicle"];
 
 if (isNull _projectile) exitWith {};
-
 // Tag the projectile as handled by this vehicle so only one interceptor is created
 private _handledProjectiles = _vehicle getVariable ["njt_var_apsTracked",[]];
 _handledProjectiles pushBack _projectile;
@@ -16,7 +15,7 @@ if !([_projectile,_vehicle] call njt_fnc_apsIntersectCheck) exitWith {};
 // Find out who did it so we can blame them
 private _shooterVehicle = (getShotParents _projectile) select 0;
 private _shooter = gunner _shooterVehicle;
-if !(local _shooter) exitWith {};
+if !(local _shooterVehicle) exitWith {};
 
 // If we've accidentally detected our own projectile, ignore it
 if (_shooterVehicle == _vehicle) exitWith {};

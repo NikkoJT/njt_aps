@@ -3,6 +3,6 @@
 params ["_vehicle"];
 private _projectiles = [];
 {
-	_projectiles = _projectiles + (_vehicle nearObjects [_x,90]);
+	_projectiles = _projectiles + (_vehicle nearObjects [_x,80]);
 } forEach ["ShellBase","RocketBase","MissileBase"];
 _projectiles

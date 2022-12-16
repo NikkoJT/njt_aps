@@ -6,11 +6,11 @@ private _return = false;
 // Skip if the projectile is already intercepted
 if (isNull _projectile) exitWith { _return};
 // Skip if this would exceed the max number of checks
-if (_checkCount >= 3) exitWith { _return};
+if (_checkCount >= 5) exitWith { _return};
 
 // Draw a line based on where the projectile is going
 private _startPos = getPosASL _projectile;
-private _endPos = _startPos vectorAdd (velocity _projectile vectorMultiply 0.5);
+private _endPos = _startPos vectorAdd (velocity _projectile vectorMultiply 0.7);
 
 // If it intersects the protected vehile, report that
 private _intersects = lineIntersectsSurfaces [_startPos,_endPos,_projectile,objNull,true,1,"FIRE"];
@@ -20,7 +20,7 @@ if (count _intersects > 0) then {
 		_return = true;
 	} else {
 		_checkCount = (_checkCount + 1);
-		uisleep 0.1;
+		uisleep 0.15;
 		_return = [_projectile,_vehicle,_checkCount] call njt_fnc_apsIntersectCheck;
 	};
 };
