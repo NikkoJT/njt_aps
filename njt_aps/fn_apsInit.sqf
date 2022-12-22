@@ -93,3 +93,8 @@ private _apsDisarmAction = _vehicle addAction [
 	""	
 ];
 _vehicle setVariable ["njt_apsDisarmAction",_apsDisarmAction];
+
+// Add briefing
+if (isNil "njt_var_aps_briefingDone") then {
+	[_allowReload] call njt_fnc_apsBriefing;
+};

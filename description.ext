@@ -5,7 +5,7 @@ class CfgFunctions
 		class aps
 		{
 			file = "njt_aps";
-			class apsSetup{};
+			class apsInit{};
 			class apsIntercept{};
 			class apsLoop{};
 			class apsNearProjectiles{};
