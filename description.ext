@@ -11,6 +11,7 @@ class CfgFunctions
 			class apsNearProjectiles{};
 			class apsIntersectCheck{};
 			class apsLocalEffects{};
+			class apsBriefing{};
 		};
 	};
 };
