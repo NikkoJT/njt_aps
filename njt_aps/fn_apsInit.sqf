@@ -9,9 +9,11 @@ if (_isAllowed) then {
 
 	// This function has been run so record that.
 	if (local _vehicle) then {_vehicle setVariable ["njt_var_apsEnabled",true,true];};
-	sleep 1;
-	// Initialise APS
-	[_vehicle] spawn njt_fnc_apsLoop;
+	[_vehicle] spawn {
+		sleep 1;
+		// Initialise APS
+		[_this#0] spawn njt_fnc_apsLoop;
+	};
 };
 
 // If reloading is allowed, add an action to let players do that
