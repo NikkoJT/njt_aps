@@ -15,7 +15,7 @@ if (njt_var_apsCooldownTimer > 0) then {
 	_modeSwitch1 = "The APS contains only a single activation charge and will remain offline indefinitely after being used.";
 };
 
-private _modeSwitch2 = ["A qualified engineer can manually reload the APS from outside the vehicle. This takes some time.","The APS cannot be manually reloaded."] select _allowReload;
+private _modeSwitch2 = ["The APS cannot be manually reloaded.","A qualified engineer can manually reload the APS from outside the vehicle. This takes some time."] select _allowReload;
 
 _aps = player createDiaryRecord ["diary", ["Active Protection System",format ["
 <br/>
