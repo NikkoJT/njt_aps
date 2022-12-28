@@ -15,7 +15,7 @@ if !([_projectile,_vehicle] call njt_fnc_apsIntersectCheck) exitWith {};
 // Find out who did it so we can blame them
 private _shooterVehicle = (getShotParents _projectile) select 0;
 private _shooter = gunner _shooterVehicle;
-if !(local _shooterVehicle) exitWith {};
+if !(local _shooter) exitWith {};
 
 // If we've accidentally detected our own projectile, ignore it
 if (_shooterVehicle == _vehicle) exitWith {};
