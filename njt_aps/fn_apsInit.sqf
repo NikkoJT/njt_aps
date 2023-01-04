@@ -55,7 +55,9 @@ private _apsArmAction = _vehicle addAction [
 	{
 		params ["_target", "_caller", "_actionId", "_arguments"];
 		_target setVariable ["njt_var_apsEnabled",true,true];
-		["APS ARM",2,1] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
+		private _isReloaded = _target getVariable ["njt_var_apsCooldown",false];
+		private _text = format ["APS ARM%1",[""," - NO CHARGE"] select _isReloaded];
+		[_text,2,1] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
 		[["beep",2]] remoteExec ["playSound",crew _target];
 		_target spawn {
 			sleep 1;
