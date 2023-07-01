@@ -6,7 +6,7 @@ private _return = false;
 // Skip if the projectile is already intercepted
 if (isNull _projectile) exitWith { _return};
 // Skip if this would exceed the max number of checks
-if (_checkCount >= 5) exitWith { _return};
+if (_checkCount >= 10) exitWith { _return};
 
 // Draw a line based on where the projectile is going
 private _startPos = getPosASL _projectile;
@@ -20,7 +20,7 @@ if (count _intersects > 0) then {
 		_return = true;
 	} else {
 		_checkCount = (_checkCount + 1);
-		uisleep 0.15;
+		uisleep 0.2;
 		_return = [_projectile,_vehicle,_checkCount] call njt_fnc_apsIntersectCheck;
 	};
 };
