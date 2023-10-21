@@ -36,15 +36,20 @@ _flare setVelocity (_flareDir vectorMultiply 40);
 // Requires F3 FCS module!
 if (isPlayer _shooter) then {
 	if (vehicle _shooter != _shooter) then {
-		["APS DEFEAT",3,2] remoteExec ["f_fnc_fcsLocalWarning",_shooter];
+		if !(isNil "f_fnc_fcsLocalWarning") then {
+			["APS DEFEAT",3,2] remoteExec ["f_fnc_fcsLocalWarning",_shooter];
+		};
 	};
 };
 {
 	if (isPlayer _x) then {
 		[["vtolAlarm",2]] remoteExec ["playSound",_x];
-		["APS ACTIVATION",3,1] remoteExec ["f_fnc_fcsLocalWarning",_x];
+		if !(isNil "f_fnc_fcsLocalWarning") then {
+			["APS ACTIVATION",3,1] remoteExec ["f_fnc_fcsLocalWarning",_x];
+		};
 	};
 } forEach crew _vehicle;
+
 [_projectilePos,_vehicle] remoteExec ["njt_fnc_apsLocalEffects"];
 playSound3D ["A3\Sounds_F\arsenal\explosives\rockets\Rocket_closeExp_02.wss",_vehicle,false,getPosASL _vehicle,1,1,150];
 playSound3D ["A3\Sounds_F\arsenal\explosives\rockets\RocketHeavy_tailMeadows_01.wss",_vehicle,false,getPosASL _vehicle,1,1,150];
