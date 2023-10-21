@@ -3,6 +3,7 @@ Active Protection System for Arma 3 vehicles
 
 WARNING:    
 This system relies on high-frequency scanning for projectiles. Low frame rate on the shooter's machine can make the system less reliable, especially at close range with high-velocity projectiles.
+This system uses remoteExec. If your CfgRemoteExec is restrictive, the system may not work properly.
 
 APS uses continuous local checking to detect and destroy projectiles that threaten the protected vehicle.
 
