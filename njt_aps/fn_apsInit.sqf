@@ -34,7 +34,9 @@ if _allowReload then {
 			params ["_target", "_caller", "_actionId", "_arguments"];
 			_target setVariable ["njt_var_apsCooldown",false,true];
 			playSound3D ["A3\Sounds_F\arsenal\weapons\LongRangeRifles\DMR_01_Rahim\DMR_01_reload.wss",_caller];
-			["APS READY",2,1] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
+			if !(isNil "f_fnc_fcsLocalWarning") then {
+				["APS READY",2,1] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
+			};
 			[["beep",2]] remoteExec ["playSound",crew _target];
 		}, // Code on completed
 		{}, // Code on interrupt
@@ -55,10 +57,12 @@ private _apsArmAction = _vehicle addAction [
 	{
 		params ["_target", "_caller", "_actionId", "_arguments"];
 		_target setVariable ["njt_var_apsEnabled",true,true];
-		private _isReloaded = _target getVariable ["njt_var_apsCooldown",false];
-		private _text = format ["APS ARM%1",[""," - NO CHARGE"] select _isReloaded];
-		[_text,2,1] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
-		[["beep",2]] remoteExec ["playSound",crew _target];
+		if !(isNil "f_fnc_fcsLocalWarning") then {
+			private _isReloaded = _target getVariable ["njt_var_apsCooldown",false];
+			private _text = format ["APS ARM%1",[""," - NO CHARGE"] select _isReloaded];
+			[_text,2,1] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
+			[["beep",2]] remoteExec ["playSound",crew _target];
+		};
 		_target spawn {
 			sleep 1;
 			[_this] remoteExec ["njt_fnc_apsLoop",0,true];
@@ -82,7 +86,9 @@ private _apsDisarmAction = _vehicle addAction [
 	{
 		params ["_target", "_caller", "_actionId", "_arguments"];
 		_target setVariable ["njt_var_apsEnabled",false,true];
-		["APS DISARM",2,1] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
+		if !(isNil "f_fnc_fcsLocalWarning") then {
+			["APS DISARM",2,1] remoteExec ["f_fnc_fcsLocalWarning",crew _target];
+		};
 		[["beep",2]] remoteExec ["playSound",crew _target];
 	},
 	nil,	
