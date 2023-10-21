@@ -35,7 +35,9 @@ _flare setVelocity (_flareDir vectorMultiply 40);
 
 // Requires F3 FCS module!
 if (isPlayer _shooter) then {
-	["APS DEFEAT",3,2] remoteExec ["f_fnc_fcsLocalWarning",_shooter];
+	if (vehicle _shooter != _shooter) then {
+		["APS DEFEAT",3,2] remoteExec ["f_fnc_fcsLocalWarning",_shooter];
+	};
 };
 {
 	if (isPlayer _x) then {
