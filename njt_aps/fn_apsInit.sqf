@@ -1,4 +1,6 @@
 params ["_vehicle"];
+if (isNull _vehicle) exitWith{};
+if (!alive _vehicle) exitWith{};
 
 // Active Protection System Module
 

@@ -1,5 +1,5 @@
-// APS - OVERWATCH LOOP MODULE
-// This function detects when there are nearby important projectiles, and activates the interceptor if there are.
+// APS - MAINTENANCE LOOP MODULE
+// This function performs maintenance tasks on vehicles.
 params ["_vehicle"];
 
 // Cleanup: regularly empty the vehicle's tracked objects array of old junk
