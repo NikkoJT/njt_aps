@@ -41,9 +41,7 @@ private _apsReloadAction = [
 	false, // Show when unconscious
 	true // Show on screen
 ] call BIS_fnc_holdActionAdd;
-	
-	_vehicle setVariable ["njt_apsReloadAction",_apsReloadAction];
-};
+_vehicle setVariable ["njt_apsReloadAction",_apsReloadAction];
 
 // Add action to toggle APS
 private _apsArmAction = _vehicle addAction [
