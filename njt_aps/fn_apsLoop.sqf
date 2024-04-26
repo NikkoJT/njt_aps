@@ -21,7 +21,7 @@ params ["_vehicle"];
 		private _apsEnabled = _vehicle getVariable ["njt_var_apsEnabled",false];
 		private _apsCooldown = _vehicle getVariable ["njt_var_apsCooldown",false];
 		if (_apsEnabled && !_apsCooldown) then {
-			njt_var_apsActiveVehicles = njt_var_apsActiveVehicles pushback _vehicle;
+			njt_var_apsActiveVehicles pushback _vehicle;
 		} else {
 			njt_var_apsActiveVehicles = njt_var_apsActiveVehicles - [_vehicle];
 		};
