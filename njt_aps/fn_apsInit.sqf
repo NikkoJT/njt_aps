@@ -100,11 +100,11 @@ _vehicle setVariable ["njt_apsDisarmAction",_apsDisarmAction];
 
 // Add briefing
 if (isNil "njt_var_aps_briefingDone") then {
-	[_allowReload] call njt_fnc_apsBriefing;
+	call njt_fnc_apsBriefing;
 };
 
 if (isNil "njt_var_apsActiveVehicles") then {
-	njt_var_aps_activeVehicles = [];
+	njt_var_apsActiveVehicles = [];
 };
 
 if (isNil "njt_var_apsEachFrame") then {
