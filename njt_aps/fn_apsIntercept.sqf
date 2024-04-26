@@ -62,21 +62,7 @@ triggerAmmo _fxgrenade;
 uisleep 2;
 
 // Now we're on cooldown (but don't do this if we're a secondary activation, let the first activation take care of it)
-_APScooldown = _vehicle getVariable ["njt_var_apsCooldown",false];
+private _APScooldown = _vehicle getVariable ["njt_var_apsCooldown",false];
 if !_APScooldown then {
 	_vehicle setVariable ["njt_var_apsCooldown",true,true];
-	
-	if (njt_var_APScooldownTimer > 0) then {
-		private _cooldownStart = time;
-		waitUntil {
-			sleep 0.5;
-			((time >= (_cooldownStart + njt_var_APScooldownTimer)) or !(_vehicle getVariable ["njt_var_apsCooldown",false]));
-		};
-		
-		if (_vehicle getVariable ["njt_var_apsCooldown",false]) then {
-			_vehicle setVariable ["njt_var_apsCooldown",false,true];
-			[["beep",2]] remoteExec ["playSound",crew _vehicle];
-			["APS READY",3,1] remoteExec ["f_fnc_fcsLocalWarning",crew _vehicle];
-		};
-	};
 };
