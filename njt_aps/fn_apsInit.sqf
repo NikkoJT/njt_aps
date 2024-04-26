@@ -4,15 +4,6 @@ if (!alive _vehicle) exitWith{};
 
 // Active Protection System Module
 
-// Check if APS has already been set up, and subsequently turned off, on this vehicle
-private _isAllowed = _vehicle getVariable ["njt_var_apsEnabled",true];
-if (_isAllowed) then {
-
-	// This function has been run so record that.
-	if (local _vehicle) then {_vehicle setVariable ["njt_var_apsEnabled",true,true];};
-
-};
-
 // Add an action to let players reload
 private _apsReloadAction = [
 	_vehicle, // Target
