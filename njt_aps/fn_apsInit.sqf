@@ -14,11 +14,9 @@ private _apsReloadAction = [
 	"(_this getUnitTrait 'engineer') && {(_target getVariable ['njt_var_apsCooldown',false]) && (isNull objectParent _this) && (alive _target) && (_this distance _target < 5)}", // Condition to progress
 	{}, // Code on start
 	{
-		params ["_target", "_caller", "_actionId", "_arguments", "_progress", "_maxProgress"];
 		playSound3D ["\a3\Ui_f\data\Sound\CfgCutscenes\repair.wss",_caller];
 	}, // Code on tick
 	{ 
-		params ["_target", "_caller", "_actionId", "_arguments"];
 		_target setVariable ["njt_var_apsCooldown",false,true];
 		playSound3D ["A3\Sounds_F\arsenal\weapons\LongRangeRifles\DMR_01_Rahim\DMR_01_reload.wss",_caller];
 		if !(isNil "f_fnc_fcsLocalWarning") then {
