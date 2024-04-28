@@ -6,18 +6,10 @@ This function generates a briefing tab describing the operation of the Active Pr
 
 if (!hasInterface) exitWith {}; // Exit if not a player.
 
-params ["_allowReload"];
+waitUntil {!isNil "f_script_loadoutNotes"};
+waitUntil {scriptDone f_script_loadoutNotes};
 
-private _modeSwitch1 = "";
-if (njt_var_apsCooldownTimer > 0) then {
-	_modeSwitch1 = format ["After shutting off, the APS will automatically recharge and reactivate after %1 seconds.",njt_var_apsCooldownTimer];
-	} else {
-	_modeSwitch1 = "The APS contains only a single activation charge and will remain offline indefinitely after being used.";
-};
-
-private _modeSwitch2 = ["The APS cannot be manually reloaded.","A qualified engineer can manually reload the APS from outside the vehicle. This takes some time."] select _allowReload;
-
-_aps = player createDiaryRecord ["diary", ["Active Protection System",format ["
+_aps = player createDiaryRecord ["diary", ["Active Protection System","
 <br/>
 Some vehicles in this mission are fitted with active protection systems. APS can intercept rockets, missiles, and shells that pose a danger to the vehicle.
 <br/><br/>
@@ -29,14 +21,18 @@ Be aware that projectiles fired at very close range may not give the APS time to
 <br/><br/>
 APS activation can pose a hazard to nearby infantry. The system uses an explosive charge to destroy projectiles which is potentially lethal.
 <br/><br/>
-%1
+The APS contains only a single activation charge and will remain offline indefinitely after being used.
 <br/><br/>
 <font size='18'>INTERACTION</font>
 <br/>
-%2
+A qualified engineer can manually reload the APS from outside the vehicle. This takes some time.
 <br/><br/>
 The vehicle commander can arm and disarm the APS from the action menu. While disarmed, the APS will not attempt to intercept any threats.
-",_modeSwitch1,_modeSwitch2]]];
+<br/><br/>
+<font size='18'>WARNING: APS DEFAULT SAFE</font>
+<br/>
+The APS is disarmed by default on mission start. Remember to turn it on before entering combat.
+"]];
 
 // Set a variable so this won't be generated again by subsequent inits
 njt_var_aps_briefingDone = true;
