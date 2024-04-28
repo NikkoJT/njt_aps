@@ -20,6 +20,10 @@ if isServer then {
 		njt_var_apsStatusLoop = 0 spawn {
 			while {true} do {
 				{
+					if (!alive _x) then {
+						njt_var_apsActiveVehicles = njt_var_apsActiveVehicles - [_x];
+						continue;
+					};
 					private _apsEnabled = _x getVariable ["njt_var_apsEnabled",false];
 					private _apsCooldown = _x getVariable ["njt_var_apsCooldown",false];
 					if (_apsEnabled && !_apsCooldown) then {
@@ -27,7 +31,7 @@ if isServer then {
 					} else {
 						njt_var_apsActiveVehicles = njt_var_apsActiveVehicles - [_x];
 					};
-				} forEach entities [["LandVehicle"],[],false,true];
+				} forEach entities [["LandVehicle"],[],false,false];
 				publicVariable "njt_var_apsActiveVehicles";
 				sleep 1;
 			};
