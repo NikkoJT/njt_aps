@@ -6,7 +6,7 @@ params ["_projectile","_vehicle"];
 if (isNull _projectile) exitWith {};
 // Tag the projectile as handled by this vehicle so only one interceptor is created
 private _handledProjectiles = _vehicle getVariable ["njt_var_apsTracked",[]];
-_handledProjectiles pushBack _projectile;
+_handledProjectiles pushBackUnique _projectile;
 _vehicle setVariable ["njt_var_apsTracked",_handledProjectiles];
 
 // Check if the projectile is likely to hit the vehicle

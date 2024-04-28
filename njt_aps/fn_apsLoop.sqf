@@ -14,17 +14,23 @@ params ["_vehicle"];
 	};
 };
 
-// Regularly check for the vehicle's APS status and remove/add from global array
-[_vehicle] spawn {
-	params ["_vehicle"];
-	while {alive _vehicle} do {
-		private _apsEnabled = _vehicle getVariable ["njt_var_apsEnabled",false];
-		private _apsCooldown = _vehicle getVariable ["njt_var_apsCooldown",false];
-		if (_apsEnabled && !_apsCooldown) then {
-			njt_var_apsActiveVehicles pushback _vehicle;
-		} else {
-			njt_var_apsActiveVehicles = njt_var_apsActiveVehicles - [_vehicle];
+// Regularly check for all vehicles' APS status and remove/add from global array
+if isServer then {
+	if (isNil "njt_var_apsStatusLoop") then {
+		njt_var_apsStatusLoop = 0 spawn {
+			while {true} do {
+				{
+					private _apsEnabled = _x getVariable ["njt_var_apsEnabled",false];
+					private _apsCooldown = _x getVariable ["njt_var_apsCooldown",false];
+					if (_apsEnabled && !_apsCooldown) then {
+						njt_var_apsActiveVehicles pushbackUnique _x;
+					} else {
+						njt_var_apsActiveVehicles = njt_var_apsActiveVehicles - [_x];
+					};
+				} forEach entities [["LandVehicle"],[],false,true];
+				publicVariable "njt_var_apsActiveVehicles";
+				sleep 1;
+			};
 		};
-		sleep 1;
 	};
 };

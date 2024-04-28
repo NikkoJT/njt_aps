@@ -6,6 +6,9 @@ This function generates a briefing tab describing the operation of the Active Pr
 
 if (!hasInterface) exitWith {}; // Exit if not a player.
 
+waitUntil {!isNil "f_script_loadoutNotes"};
+waitUntil {scriptDone f_script_loadoutNotes};
+
 _aps = player createDiaryRecord ["diary", ["Active Protection System","
 <br/>
 Some vehicles in this mission are fitted with active protection systems. APS can intercept rockets, missiles, and shells that pose a danger to the vehicle.
