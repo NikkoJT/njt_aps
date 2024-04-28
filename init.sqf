@@ -1,6 +1,6 @@
 // APS module
-// Parameters: vehicle, cooldown (0 for single-use), allow manual reload
-// Default configuration: the system will activate once before requiring a manual reload.
+// Parameters: vehicle
+// vehicle init field would also work
 {
-	[_x,0,true] call njt_fnc_apsInit;
+	[_x] call njt_fnc_apsInit;
 } forEach [];
