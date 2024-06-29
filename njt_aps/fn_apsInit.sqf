@@ -115,6 +115,12 @@ if (isNil "njt_var_apsEachFrame") then {
 	}];
 };
 
-sleep 1;
-// Initialise APS maintenance loop
-[_vehicle] spawn njt_fnc_apsLoop;
+_vehicle spawn {
+	// Add briefing
+	if (isNil "njt_var_aps_briefingDone") then {
+		call njt_fnc_apsBriefing;
+	};
+	sleep 1;
+	// Initialise APS maintenance loop
+	[_this] spawn njt_fnc_apsLoop;
+};
