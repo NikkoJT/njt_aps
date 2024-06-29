@@ -8,7 +8,7 @@ if (!hasInterface) exitWith {}; // Exit if not a player.
 
 waitUntil {!isNil "f_script_loadoutNotes"};
 waitUntil {scriptDone f_script_loadoutNotes};
-if (missionNamespace getVariable ["njt_var_aps_briefingDone",false]) exitWith{};
+if (!isNil "njt_var_aps_briefingDone") exitWith{};
 
 _aps = player createDiaryRecord ["diary", ["Active Protection System","
 <br/>
